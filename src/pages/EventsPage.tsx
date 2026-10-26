@@ -110,6 +110,11 @@ export const EventsPage: React.FC = () => {
 
   const handleOpenEdit = (evt: UpcomingEvent) => {
     setEditingEvent(evt)
+    // Strip prefix so user only sees their custom slug in the input
+    let slug = evt.short_link || ""
+    slug = slug.replace(/^https?:\/\/(?:www\.)?(?:looca-id\.com|looca\.id)\/(?:event|r)\//i, "")
+    slug = slug.replace(/^\/?(event|r)\//i, "")
+
     reset({
       title: evt.title,
       sub_title: evt.sub_title || "",
@@ -120,7 +125,7 @@ export const EventsPage: React.FC = () => {
       place: evt.place,
       admission_fee: evt.admission_fee,
       origin_link: evt.origin_link || "",
-      short_link: evt.short_link || "",
+      short_link: slug,
       is_coming_soon: evt.is_coming_soon,
       is_active: evt.is_active,
     })
@@ -144,6 +149,16 @@ export const EventsPage: React.FC = () => {
   const onSubmit = async (values: EventFormValues) => {
     try {
       setIsSubmitting(true)
+      let fullShortLink: string | null = null
+      if (values.short_link && values.short_link.trim() !== "") {
+        let slug = values.short_link.trim()
+        slug = slug.replace(/^https?:\/\/(?:www\.)?(?:looca-id\.com|looca\.id)\/(?:event|r)\//i, "")
+        slug = slug.replace(/^\/?(event|r)\//i, "")
+        if (slug !== "") {
+          fullShortLink = `https://looca-id.com/event/${slug}`
+        }
+      }
+
       const sanitized = {
         ...values,
         sub_title: values.sub_title || null,
@@ -157,7 +172,7 @@ export const EventsPage: React.FC = () => {
             ? Number(values.admission_fee)
             : null,
         origin_link: values.origin_link || null,
-        short_link: values.short_link || null,
+        short_link: fullShortLink,
       }
 
       if (editingEvent) {
@@ -507,11 +522,20 @@ export const EventsPage: React.FC = () => {
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="short_link">Short Link (optional)</Label>
-                <Input
-                  id="short_link"
-                  placeholder="https://looca.id/event/..."
-                  {...register("short_link")}
-                />
+                <div className="flex items-center rounded-xl border border-input bg-background shadow-xs overflow-hidden focus-within:ring-2 focus-within:ring-pink-deep">
+                  <span className="bg-muted px-3 py-2 text-xs text-muted-foreground select-none font-mono border-r border-input whitespace-nowrap">
+                    https://looca-id.com/event/
+                  </span>
+                  <Input
+                    id="short_link"
+                    placeholder="weekend-workshop"
+                    className="border-0 shadow-none focus-visible:ring-0 rounded-none h-9 text-sm"
+                    {...register("short_link")}
+                  />
+                </div>
+                <p className="text-[11px] text-muted-foreground">
+                  User will be automatically redirected to your original link when visiting this short URL.
+                </p>
               </div>
             </div>
 
