@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="14" fill="#000000"/>
+  <!-- Perfectly Centered TikTok Note -->
+  <g transform="translate(3.5, -2.5)">
+    <!-- Cyan Shadow -->
+    <path d="M32.8 17.5a8.2 8.2 0 0 1-5.4-4.3h-4.2v17.4a5.2 5.2 0 1 1-3.8-5v-4.2a9.4 9.4 0 1 0 8 9.2V22.6a12.3 12.3 0 0 0 5.4 1.3v-4.3a8.2 8.2 0 0 1 0-2.1z" fill="#25F4EE" transform="translate(-1, -0.6)"/>
+    <!-- Magenta / Red Shadow -->
+    <path d="M32.8 17.5a8.2 8.2 0 0 1-5.4-4.3h-4.2v17.4a5.2 5.2 0 1 1-3.8-5v-4.2a9.4 9.4 0 1 0 8 9.2V22.6a12.3 12.3 0 0 0 5.4 1.3v-4.3a8.2 8.2 0 0 1 0-2.1z" fill="#FE2C55" transform="translate(1, 0.6)"/>
+    <!-- Crisp White Foreground Note -->
+    <path d="M32.8 17.5a8.2 8.2 0 0 1-5.4-4.3h-4.2v17.4a5.2 5.2 0 1 1-3.8-5v-4.2a9.4 9.4 0 1 0 8 9.2V22.6a12.3 12.3 0 0 0 5.4 1.3v-4.3a8.2 8.2 0 0 1 0-2.1z" fill="#ffffff"/>
+  </g>
+</svg>

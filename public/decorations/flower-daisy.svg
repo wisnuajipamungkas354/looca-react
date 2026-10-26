@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <g transform="translate(50,50)">
+    <!-- Petals -->
+    <ellipse cx="0" cy="-30" rx="14" ry="20" fill="#FFFFFF" stroke="#F8C8DC" stroke-width="2"/>
+    <ellipse cx="28" cy="-10" rx="14" ry="20" transform="rotate(72 28 -10)" fill="#FFFFFF" stroke="#F8C8DC" stroke-width="2"/>
+    <ellipse cx="18" cy="24" rx="14" ry="20" transform="rotate(144 18 24)" fill="#FFFFFF" stroke="#F8C8DC" stroke-width="2"/>
+    <ellipse cx="-18" cy="24" rx="14" ry="20" transform="rotate(216 -18 24)" fill="#FFFFFF" stroke="#F8C8DC" stroke-width="2"/>
+    <ellipse cx="-28" cy="-10" rx="14" ry="20" transform="rotate(288 -28 -10)" fill="#FFFFFF" stroke="#F8C8DC" stroke-width="2"/>
+    <!-- Center -->
+    <circle cx="0" cy="0" r="16" fill="#FFD966" stroke="#F5B041" stroke-width="2"/>
+    <!-- Cute smile face -->
+    <circle cx="-5" cy="-3" r="2" fill="#3D3D3D"/>
+    <circle cx="5" cy="-3" r="2" fill="#3D3D3D"/>
+    <path d="M-4,3 Q0,8 4,3" stroke="#3D3D3D" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

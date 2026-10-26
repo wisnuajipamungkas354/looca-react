@@ -1,0 +1,74 @@
+Buatkan aku implementation plan berikut :
+- Buat initial project menggunakan react dengan bahasa typescript
+- Gunakan Tailwindcss dan shadcn ui untuk styling
+- Gunakan react router
+- Buatkan halaman admin dengan fitur login, dashboard, products, workshop, upcoming events, dan settings. Detailnya nanti aku jelaskan dibawah
+- Styling mengikuti gaya pada website astro di "C:\Users\WISNU AJI\OneDrive\Documents\SlicingViews\looca_id"
+- Posisi navbar: gunakan sidebar kiri jika dalam viewport desktop, navbar bawah jika dalam viewport mobile agar seperti aplikasi native
+- Sediakan darkmode dan lightmode
+- Gunakan popup yang menarik untuk feedback ke user, jangan gunakan popup bawaan browser
+- Gunakan bahasa inggris disemua halaman
+- Untuk sementara, Gunakan data dummy / mock. Kamu bisa ambil data dummy dari website astro yang sudah ada. Namun tetap pertahankan struktur data yang sudah aku buat di implementation plan ini.
+
+Detail fitur
+- Login :
+  -> Tempatkan logo looca diatas form login
+  -> Berikan tampilan yang lucu dan menarik sesuai dengan style pada website astro
+
+- Dashboard :
+  -> Tampilkan Card total products, workshop dan upcoming events
+  -> Tampilkan grafik analitik informatif untuk memantau pengunjung website, baik harian, mingguan dan bulanan. 
+
+- Products
+  -> Terdapat sub menu List Products dan Categories
+  -> List Categories adalah fitur CRUD categories untuk dikaitkan ke Products. Struktur data :
+     -> id int auto_increment
+     -> categories_name varchar 255 not null
+  -> List Categories sementara ada 5 : Fashion, Accessories, Bagcharm, Souvenir, Merchandise
+  -> List Products adalah fitur CRUD products dengan struktur data berikut :
+     -> id int auto_increment
+     -> name varchar 255 not null
+     -> category_id int not null
+     -> images json not null (maksimal 3 gambar, maks size 1mb per gambar)
+     -> description text null 
+     -> action_link text not null  (untuk meletakkan link ketika tombol di klik)
+     -> action_label varchar 30 not null (untuk label aksi tombol)
+     -> total_click int default 0 (untuk menghitung jumlah pengunjung yang klik produk)
+  -> Gunakan library untuk meng-crop gambar. Aspect ratio dikunci ke potrait
+
+- Workshop
+  -> Judul menu "DIY & Workshop". kalau di sidebar tetep workshop saja
+  -> Menu ini adalah CRUD dengan struktur data seperti berikut :
+     -> id int auto_increment
+     -> title varchar 50 not null
+     -> sub_title varchar 50 null
+     -> description varchar 150 not null
+     -> thumbnail text not null
+     -> video text null
+     -> total_play int default 0 (untuk menghitung jumlah pengunjung yang menonton diatas 5 detik)
+
+- Upcoming Events
+  -> Menu ini adalah CRUD dengan struktur data seperti berikut :
+     -> id int auto_increment
+     -> title varchar 50 not null
+     -> sub_title varchar 50 null
+     -> description text null
+     -> poster text not null
+     -> start_date date null
+     -> start_time (untuk menyimpan data jam) null
+     -> place varchar 255 not null
+     -> admission_fee float null
+     -> origin_link text null
+     -> short_link text null
+     -> is_coming_soon bool default false
+     -> is_active bool default true
+  
+- Settings
+  -> Menu ini berisi pengaturan website :
+     -> Nomor Whatsapp
+     -> Link Sosial Media : instagram dan tiktok 
+     -> Link Shopee
+
+
+Gunakan bahasa yang low level, jangan high level (terlalu detail)
+implementation plan ini akan dieksekusi oleh ai yang lebih murah
