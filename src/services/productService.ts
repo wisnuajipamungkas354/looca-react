@@ -1,32 +1,37 @@
 import { Product } from "@/types"
-import { initialProducts } from "@/mocks/products"
-import { LocalStorageRepository, delay } from "./mockRepo"
-
-const repo = new LocalStorageRepository<Product>("looca_products", initialProducts)
+import { apiClient } from "./apiClient"
 
 export const productService = {
   async getAll(): Promise<Product[]> {
-    await delay()
-    return repo.getAll()
+    return apiClient.get<Product[]>("/api/admin/products")
   },
 
   async getById(id: number): Promise<Product | undefined> {
-    await delay()
-    return repo.getById(id)
+    try {
+      return await apiClient.get<Product>(`/api/admin/products/${id}`)
+    } catch {
+      return undefined
+    }
   },
 
-  async create(data: Omit<Product, "id" | "total_click">): Promise<Product> {
-    await delay()
-    return repo.create({ ...data, total_click: 0 })
+  async create(data: Omit<Product, "id" | "total_click" | "slug">): Promise<Product> {
+    return apiClient.post<Product>("/api/admin/products", data)
   },
 
   async update(id: number, patch: Partial<Product>): Promise<Product> {
-    await delay()
-    return repo.update(id, patch)
+    let payload = patch
+    // If not all required fields are present in patch, merge with current
+    if (!patch.name || !patch.category_id || !patch.images || !patch.action_link || !patch.action_label) {
+      const current = await this.getById(id)
+      if (current) {
+        payload = { ...current, ...patch }
+      }
+    }
+
+    return apiClient.put<Product>(`/api/admin/products/${id}`, payload)
   },
 
   async remove(id: number): Promise<void> {
-    await delay()
-    repo.delete(id)
+    await apiClient.delete(`/api/admin/products/${id}`)
   },
 }

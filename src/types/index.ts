@@ -1,10 +1,12 @@
 export interface Category {
   id: number;
+  slug?: string;
   categories_name: string;
 }
 
 export interface Product {
   id: number;
+  slug?: string;
   name: string;
   category_id: number;
   images: string[];

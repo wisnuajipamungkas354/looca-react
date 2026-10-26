@@ -29,6 +29,7 @@ import { ConfirmDialog } from "@/components/common/ConfirmDialog"
 import { EmptyState } from "@/components/common/EmptyState"
 import { workshopService } from "@/services/workshopService"
 import { Workshop } from "@/types"
+import { getMediaUrl } from "@/lib/utils"
 
 const workshopSchema = z.object({
   title: z.string().min(1, "Title is required").max(50, "Title must be ≤ 50 chars"),
@@ -188,7 +189,7 @@ export const WorkshopPage: React.FC = () => {
                     <TableCell>
                       <div className="h-14 w-14 rounded-2xl overflow-hidden bg-secondary border border-pink/40 shrink-0">
                         <img
-                          src={w.thumbnail || "/mock/diy1.jpeg"}
+                          src={getMediaUrl(w.thumbnail) || "/mock/diy1.jpeg"}
                           alt={w.title}
                           className="w-full h-full object-cover"
                         />
@@ -260,7 +261,7 @@ export const WorkshopPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <div className="h-16 w-16 rounded-2xl overflow-hidden bg-secondary border border-pink/40 shrink-0">
                     <img
-                      src={w.thumbnail || "/mock/diy1.jpeg"}
+                      src={getMediaUrl(w.thumbnail) || "/mock/diy1.jpeg"}
                       alt={w.title}
                       className="w-full h-full object-cover"
                     />

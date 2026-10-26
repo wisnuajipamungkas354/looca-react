@@ -1,32 +1,35 @@
 import { Workshop } from "@/types"
-import { initialWorkshops } from "@/mocks/workshops"
-import { LocalStorageRepository, delay } from "./mockRepo"
-
-const repo = new LocalStorageRepository<Workshop>("looca_workshops", initialWorkshops)
+import { apiClient } from "./apiClient"
 
 export const workshopService = {
   async getAll(): Promise<Workshop[]> {
-    await delay()
-    return repo.getAll()
+    return apiClient.get<Workshop[]>("/api/admin/workshops")
   },
 
   async getById(id: number): Promise<Workshop | undefined> {
-    await delay()
-    return repo.getById(id)
+    try {
+      return await apiClient.get<Workshop>(`/api/admin/workshops/${id}`)
+    } catch {
+      return undefined
+    }
   },
 
   async create(data: Omit<Workshop, "id" | "total_play">): Promise<Workshop> {
-    await delay()
-    return repo.create({ ...data, total_play: 0 })
+    return apiClient.post<Workshop>("/api/admin/workshops", data)
   },
 
   async update(id: number, patch: Partial<Workshop>): Promise<Workshop> {
-    await delay()
-    return repo.update(id, patch)
+    let payload = patch
+    if (!patch.title || !patch.description || !patch.thumbnail) {
+      const current = await this.getById(id)
+      if (current) {
+        payload = { ...current, ...patch }
+      }
+    }
+    return apiClient.put<Workshop>(`/api/admin/workshops/${id}`, payload)
   },
 
   async remove(id: number): Promise<void> {
-    await delay()
-    repo.delete(id)
+    await apiClient.delete(`/api/admin/workshops/${id}`)
   },
 }

@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import { toast } from "sonner"
-import { Plus, X, Crop } from "lucide-react"
+import { Plus, X } from "lucide-react"
 import { ImageCropperDialog } from "./ImageCropperDialog"
 import { uploadService } from "@/services/uploadService"
+import { getMediaUrl } from "@/lib/utils"
 
 interface ImageUploaderProps {
   value: string | string[]
@@ -89,7 +90,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
             }`}
           >
             <img
-              src={img}
+              src={getMediaUrl(img)}
               alt="preview"
               className="w-full h-full object-cover transition-transform group-hover:scale-105"
             />

@@ -1,48 +1,32 @@
-import { SiteSettings, AnalyticsData } from "@/types"
-import { initialSettings } from "@/mocks/settings"
-import { initialAnalytics } from "@/mocks/analytics"
-import { delay } from "./mockRepo"
-
-const SETTINGS_KEY = "looca_site_settings"
-
-export const settingsService = {
-  async get(): Promise<SiteSettings> {
-    await delay()
-    const raw = localStorage.getItem(SETTINGS_KEY)
-    return raw ? JSON.parse(raw) : initialSettings
-  },
-
-  async save(data: SiteSettings): Promise<SiteSettings> {
-    await delay()
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(data))
-    return data
-  },
-}
-
-export const analyticsService = {
-  async get(): Promise<AnalyticsData> {
-    await delay()
-    return initialAnalytics
-  },
-}
+import { apiClient } from "./apiClient"
 
 export const uploadService = {
-  // Mock image upload: converts or keeps dataUrl and simulates upload latency
+  // Upload cropped image dataUrl or image file to backend
   async uploadImage(dataUrl: string): Promise<string> {
-    await delay(300)
-    // In production backend, this would be: FormData upload -> return cloud URL (e.g., S3/Cloudinary)
-    return dataUrl
+    if (dataUrl.startsWith("/uploads/") || dataUrl.startsWith("http://") || dataUrl.startsWith("https://")) {
+      return dataUrl
+    }
+
+    const res = await fetch(dataUrl)
+    const blob = await res.blob()
+
+    const formData = new FormData()
+    formData.append("file", blob, "cropped-image.jpg")
+
+    const result = await apiClient.upload<{ url: string }>("/api/admin/uploads/image", formData)
+    return result.url
   },
 
-  // Mock video upload: simulates file progress and returns an object URL
+  // Upload video binary with progress callback
   async uploadVideo(file: File, onProgress?: (percent: number) => void): Promise<string> {
-    let p = 0
-    while (p < 100) {
-      p += 25
-      if (onProgress) onProgress(p)
-      await delay(250)
-    }
-    // In production backend, this would upload the binary to storage and return the public video URL
-    return URL.createObjectURL(file)
+    const formData = new FormData()
+    formData.append("file", file, file.name)
+
+    const result = await apiClient.upload<{ url: string }>(
+      "/api/admin/uploads/video",
+      formData,
+      onProgress
+    )
+    return result.url
   },
 }

@@ -6,9 +6,10 @@ import { PageHeader } from "@/components/layout/PageHeader"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { ConfirmDialog } from "@/components/common/ConfirmDialog"
 import { EmptyState } from "@/components/common/EmptyState"
+import { getMediaUrl } from "@/lib/utils"
 import { ProductFormDialog } from "./ProductFormDialog"
 import { productService } from "@/services/productService"
 import { categoryService } from "@/services/categoryService"
@@ -178,7 +179,7 @@ export const ProductsPage: React.FC = () => {
                 {/* Image container */}
                 <div className="relative aspect-[3/4] w-full overflow-hidden bg-secondary">
                   <img
-                    src={product.images[0] || "/mock/fashion1.jpeg"}
+                    src={getMediaUrl(product.images[0]) || "/mock/fashion1.jpeg"}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />

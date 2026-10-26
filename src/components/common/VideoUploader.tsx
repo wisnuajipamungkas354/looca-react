@@ -3,6 +3,7 @@ import { toast } from "sonner"
 import { Video, X, UploadCloud, CheckCircle2 } from "lucide-react"
 import { uploadService } from "@/services/uploadService"
 import { Button } from "@/components/ui/button"
+import { getMediaUrl } from "@/lib/utils"
 
 interface VideoUploaderProps {
   value: string | null
@@ -47,7 +48,7 @@ export const VideoUploader: React.FC<VideoUploaderProps> = ({ value, onChange })
       {value ? (
         <div className="space-y-2">
           <div className="relative rounded-2xl overflow-hidden border-2 border-pink/60 bg-black aspect-video max-h-56 flex items-center justify-center">
-            <video src={value} controls className="w-full h-full object-contain" />
+            <video src={getMediaUrl(value)} controls className="w-full h-full object-contain" />
           </div>
           <div className="flex items-center justify-between text-xs text-muted-foreground px-1">
             <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
