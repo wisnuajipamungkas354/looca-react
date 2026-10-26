@@ -111,7 +111,6 @@ export const LoginPage: React.FC = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@looca.id"
                   {...register("email")}
                   disabled={isLoading}
                 />
