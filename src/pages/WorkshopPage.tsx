@@ -189,7 +189,7 @@ export const WorkshopPage: React.FC = () => {
                     <TableCell>
                       <div className="h-14 w-14 rounded-2xl overflow-hidden bg-secondary border border-pink/40 shrink-0">
                         <img
-                          src={getMediaUrl(w.thumbnail) || "/mock/diy1.jpeg"}
+                          src={getMediaUrl(w.thumbnail)}
                           alt={w.title}
                           className="w-full h-full object-cover"
                         />
@@ -261,7 +261,7 @@ export const WorkshopPage: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <div className="h-16 w-16 rounded-2xl overflow-hidden bg-secondary border border-pink/40 shrink-0">
                     <img
-                      src={getMediaUrl(w.thumbnail) || "/mock/diy1.jpeg"}
+                      src={getMediaUrl(w.thumbnail)}
                       alt={w.title}
                       className="w-full h-full object-cover"
                     />

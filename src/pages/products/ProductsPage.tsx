@@ -179,7 +179,7 @@ export const ProductsPage: React.FC = () => {
                 {/* Image container */}
                 <div className="relative aspect-[3/4] w-full overflow-hidden bg-secondary">
                   <img
-                    src={getMediaUrl(product.images[0]) || "/mock/fashion1.jpeg"}
+                    src={getMediaUrl(product.images[0])}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />

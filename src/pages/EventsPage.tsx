@@ -238,7 +238,7 @@ export const EventsPage: React.FC = () => {
                     <TableCell>
                       <div className="h-16 w-12 rounded-xl overflow-hidden bg-secondary border border-pink/40 shrink-0">
                         <img
-                          src={getMediaUrl(evt.poster) || "/mock/fashion1.jpeg"}
+                          src={getMediaUrl(evt.poster)}
                           alt={evt.title}
                           className="w-full h-full object-cover"
                         />
@@ -326,7 +326,7 @@ export const EventsPage: React.FC = () => {
                 <div className="flex items-center gap-3 overflow-hidden min-w-0">
                   <div className="h-16 w-12 rounded-xl overflow-hidden bg-secondary border border-pink/30 shrink-0">
                     <img
-                      src={getMediaUrl(evt.poster) || "/mock/fashion1.jpeg"}
+                      src={getMediaUrl(evt.poster)}
                       alt={evt.title}
                       className="w-full h-full object-cover"
                     />

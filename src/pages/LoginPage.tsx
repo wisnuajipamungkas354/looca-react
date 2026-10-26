@@ -31,8 +31,8 @@ export const LoginPage: React.FC = () => {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "admin@looca.id",
-      password: "admin123",
+      email: "",
+      password: "",
     },
   })
 
@@ -162,12 +162,6 @@ export const LoginPage: React.FC = () => {
                     "Sign In"
                   )}
                 </Button>
-              </div>
-
-              <div className="rounded-xl bg-secondary/50 dark:bg-secondary/30 p-3 text-center border border-pink/20 dark:border-white/5 mt-4">
-                <p className="text-xs text-muted-foreground font-mono">
-                  Demo: <span className="text-foreground font-semibold">admin@looca.id</span> / <span className="text-foreground font-semibold">admin123</span>
-                </p>
               </div>
             </form>
           </CardContent>

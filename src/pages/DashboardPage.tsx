@@ -25,6 +25,7 @@ import { workshopService } from "@/services/workshopService"
 import { eventService } from "@/services/eventService"
 import { analyticsService } from "@/services/analyticsService"
 import { AnalyticsData, Product, Workshop } from "@/types"
+import { getMediaUrl } from "@/lib/utils"
 
 export const DashboardPage: React.FC = () => {
   const [productCount, setProductCount] = useState(0)
@@ -280,7 +281,7 @@ export const DashboardPage: React.FC = () => {
                   </span>
                   <div className="h-10 w-10 rounded-xl overflow-hidden bg-card shrink-0 border border-pink/30">
                     <img
-                      src={p.images[0] || "/mock/fashion1.jpeg"}
+                      src={getMediaUrl(p.images[0])}
                       alt={p.name}
                       className="w-full h-full object-cover"
                     />
@@ -322,7 +323,7 @@ export const DashboardPage: React.FC = () => {
                   </span>
                   <div className="h-10 w-10 rounded-xl overflow-hidden bg-card shrink-0 border border-pink/30">
                     <img
-                      src={w.thumbnail || "/mock/diy1.jpeg"}
+                      src={getMediaUrl(w.thumbnail)}
                       alt={w.title}
                       className="w-full h-full object-cover"
                     />
